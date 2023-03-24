@@ -9,6 +9,7 @@
   
     <Target Name="RepoBuild">
       <PropertyGroup>
+        <BuildCommandArgs>$(ProjectDirectory)/xunit-notests.slnf</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:Configuration=$(Configuration)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:DelaySign=$(DelaySign)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:PublicSign=$(PublicSign)</BuildCommandArgs>
