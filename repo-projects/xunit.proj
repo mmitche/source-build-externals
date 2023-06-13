@@ -2,7 +2,7 @@
     <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   
     <PropertyGroup>
-      <PackagesOutput>$(ProjectDirectory)/src/Microsoft.Css.Parser/bin/$(Configuration)/</PackagesOutput>
+      <PackagesOutput>$(ProjectDirectory)/src/xunit/bin/$(Configuration)/</PackagesOutput>
     </PropertyGroup>
   
     <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
