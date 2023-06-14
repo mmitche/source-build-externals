@@ -1,14 +1,14 @@
-From cbe3beef8e9273dc22442e95f247e8b87fca8c0e Mon Sep 17 00:00:00 2001
+From ba70cf5bb730fea38d2a770ba253f3070097d367 Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Wed, 14 Jun 2023 14:49:22 -0700
+Date: Wed, 14 Jun 2023 15:03:13 -0700
 Subject: [PATCH] Patch contents
 
 ---
- global.json                                       |  3 ---
- src/xunit.assert/xunit.assert.csproj              | 11 -----------
- .../xunit.runner.utility.csproj                   |  2 +-
- xunit-notests.slnf                                | 15 +++++++++++++++
- 4 files changed, 16 insertions(+), 15 deletions(-)
+ global.json                                        |  3 ---
+ src/xunit.assert/xunit.assert.csproj               | 11 -----------
+ .../xunit.runner.utility.csproj                    |  4 ++--
+ xunit-notests.slnf                                 | 14 ++++++++++++++
+ 4 files changed, 16 insertions(+), 16 deletions(-)
  create mode 100644 xunit-notests.slnf
 
 diff --git a/global.json b/global.json
@@ -42,7 +42,7 @@ index 40e37a96..da198397 100644
 -
  </Project>
 diff --git a/src/xunit.runner.utility/xunit.runner.utility.csproj b/src/xunit.runner.utility/xunit.runner.utility.csproj
-index 5f0cb1a8..8ca55efe 100644
+index 5f0cb1a8..272c900f 100644
 --- a/src/xunit.runner.utility/xunit.runner.utility.csproj
 +++ b/src/xunit.runner.utility/xunit.runner.utility.csproj
 @@ -1,4 +1,4 @@
@@ -51,17 +51,25 @@ index 5f0cb1a8..8ca55efe 100644
  
    <PropertyGroup>
      <AssemblyName Condition=" '$(TargetFramework)' == 'net35' ">xunit.runner.utility.net35</AssemblyName>
+@@ -10,7 +10,7 @@
+     <DefineConstants Condition=" '$(TargetFramework)' == 'uap10.0' ">$(DefineConstants);WINDOWS_UAP</DefineConstants>
+     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+     <RootNamespace>Xunit</RootNamespace>
+-    <TargetFrameworks>net35;net452;netstandard1.1;netstandard1.5;netcoreapp1.0;uap10.0</TargetFrameworks>
++    <TargetFrameworks>netstandard1.1;netstandard1.5</TargetFrameworks>
+   </PropertyGroup>
+ 
+   <ItemGroup>
 diff --git a/xunit-notests.slnf b/xunit-notests.slnf
 new file mode 100644
-index 00000000..836d876b
+index 00000000..007d4572
 --- /dev/null
 +++ b/xunit-notests.slnf
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,14 @@
 +{
 +  "solution": {
 +    "path": "xunit.sln",
 +    "projects": [
-+      "src\\xunit.assert\\xunit.assert.csproj",
 +      "src\\xunit.console\\xunit.console.csproj",
 +      "src\\xunit.core\\xunit.core.csproj",
 +      "src\\xunit.execution\\xunit.execution.csproj",
