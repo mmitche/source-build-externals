@@ -1,19 +1,17 @@
-From 697f828dae819c1d145c4c6d8629f4ae74cea0a0 Mon Sep 17 00:00:00 2001
+From 4159d134581c15390168eccc6e55c5d9b518d735 Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Wed, 14 Jun 2023 15:29:24 -0700
+Date: Wed, 14 Jun 2023 15:38:26 -0700
 Subject: [PATCH] Patching
 
 ---
- global.json                                         |  5 -----
- src/xunit.assert/xunit.assert.csproj                | 11 -----------
- src/xunit.console/xunit.console.csproj              |  2 +-
- src/xunit.execution/xunit.execution.csproj          |  2 +-
- .../xunit.runner.assemblies.csproj                  |  2 +-
- .../xunit.runner.utility.csproj                     |  4 ++--
- xunit-notests.slnf                                  | 13 +++++++++++++
- 7 files changed, 18 insertions(+), 21 deletions(-)
+ global.json                                           |  5 -----
+ src/xunit.assert/xunit.assert.csproj                  | 11 -----------
+ src/xunit.console/xunit.console.csproj                |  2 +-
+ src/xunit.execution/xunit.execution.csproj            |  2 +-
+ .../xunit.runner.assemblies.csproj                    |  2 +-
+ src/xunit.runner.utility/xunit.runner.utility.csproj  |  4 ++--
+ 6 files changed, 5 insertions(+), 21 deletions(-)
  delete mode 100644 global.json
- create mode 100644 xunit-notests.slnf
 
 diff --git a/global.json b/global.json
 deleted file mode 100644
@@ -104,26 +102,6 @@ index 5f0cb1a8..272c900f 100644
    </PropertyGroup>
  
    <ItemGroup>
-diff --git a/xunit-notests.slnf b/xunit-notests.slnf
-new file mode 100644
-index 00000000..c0c7d8cb
---- /dev/null
-+++ b/xunit-notests.slnf
-@@ -0,0 +1,13 @@
-+{
-+  "solution": {
-+    "path": "xunit.sln",
-+    "projects": [
-+      "src\\xunit.console\\xunit.console.csproj",
-+      "src\\xunit.core\\xunit.core.csproj",
-+      "src\\xunit.execution\\xunit.execution.csproj",
-+      "src\\xunit.runner.assemblies\\xunit.runner.assemblies.csproj",
-+      "src\\xunit.runner.reporters\\xunit.runner.reporters.csproj",
-+      "src\\xunit.runner.utility\\xunit.runner.utility.csproj",
-+    ]
-+  }
-+}
-\ No newline at end of file
 -- 
 2.41.0.windows.1
 
