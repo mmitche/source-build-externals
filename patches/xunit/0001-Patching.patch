@@ -1,0 +1,129 @@
+From 697f828dae819c1d145c4c6d8629f4ae74cea0a0 Mon Sep 17 00:00:00 2001
+From: Matt Mitchell <mmitche@microsoft.com>
+Date: Wed, 14 Jun 2023 15:29:24 -0700
+Subject: [PATCH] Patching
+
+---
+ global.json                                         |  5 -----
+ src/xunit.assert/xunit.assert.csproj                | 11 -----------
+ src/xunit.console/xunit.console.csproj              |  2 +-
+ src/xunit.execution/xunit.execution.csproj          |  2 +-
+ .../xunit.runner.assemblies.csproj                  |  2 +-
+ .../xunit.runner.utility.csproj                     |  4 ++--
+ xunit-notests.slnf                                  | 13 +++++++++++++
+ 7 files changed, 18 insertions(+), 21 deletions(-)
+ delete mode 100644 global.json
+ create mode 100644 xunit-notests.slnf
+
+diff --git a/global.json b/global.json
+deleted file mode 100644
+index ebd1966e..00000000
+--- a/global.json
++++ /dev/null
+@@ -1,5 +0,0 @@
+-{
+-  "msbuild-sdks": {
+-    "MSBuild.Sdk.Extras": "3.0.38"
+-  }
+-}
+diff --git a/src/xunit.assert/xunit.assert.csproj b/src/xunit.assert/xunit.assert.csproj
+index 40e37a96..da198397 100644
+--- a/src/xunit.assert/xunit.assert.csproj
++++ b/src/xunit.assert/xunit.assert.csproj
+@@ -7,15 +7,4 @@
+     <TargetFramework>netstandard1.1</TargetFramework>
+   </PropertyGroup>
+ 
+-  <ItemGroup>
+-    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.160">
+-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-      <PrivateAssets>all</PrivateAssets>
+-    </PackageReference>
+-  </ItemGroup>
+-
+-  <ItemGroup>
+-    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[5.0.0]" />
+-  </ItemGroup>
+-
+ </Project>
+diff --git a/src/xunit.console/xunit.console.csproj b/src/xunit.console/xunit.console.csproj
+index 3de40dc8..f98ce5b0 100644
+--- a/src/xunit.console/xunit.console.csproj
++++ b/src/xunit.console/xunit.console.csproj
+@@ -4,7 +4,7 @@
+     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+     <OutputType>Exe</OutputType>
+     <RootNamespace>Xunit.ConsoleClient</RootNamespace>
+-    <TargetFrameworks>net452;net46;net461;net462;net47;net471;net472;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
++    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+   </PropertyGroup>
+ 
+   <ItemGroup>
+diff --git a/src/xunit.execution/xunit.execution.csproj b/src/xunit.execution/xunit.execution.csproj
+index 43174d1f..6c1eb836 100644
+--- a/src/xunit.execution/xunit.execution.csproj
++++ b/src/xunit.execution/xunit.execution.csproj
+@@ -6,7 +6,7 @@
+     <DefineConstants>$(DefineConstants);XUNIT_FRAMEWORK</DefineConstants>
+     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+     <RootNamespace>Xunit.Sdk</RootNamespace>
+-    <TargetFrameworks>net452;netstandard1.1</TargetFrameworks>
++    <TargetFrameworks>netstandard1.1</TargetFrameworks>
+   </PropertyGroup>
+ 
+   <ItemGroup>
+diff --git a/src/xunit.runner.assemblies/xunit.runner.assemblies.csproj b/src/xunit.runner.assemblies/xunit.runner.assemblies.csproj
+index 5ca7d4c9..8f530055 100644
+--- a/src/xunit.runner.assemblies/xunit.runner.assemblies.csproj
++++ b/src/xunit.runner.assemblies/xunit.runner.assemblies.csproj
+@@ -3,7 +3,7 @@
+   <PropertyGroup>
+     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+     <RootNamespace>Xunit</RootNamespace>
+-    <TargetFrameworks>net452;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
++    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+   </PropertyGroup>
+ 
+   <ItemGroup>
+diff --git a/src/xunit.runner.utility/xunit.runner.utility.csproj b/src/xunit.runner.utility/xunit.runner.utility.csproj
+index 5f0cb1a8..272c900f 100644
+--- a/src/xunit.runner.utility/xunit.runner.utility.csproj
++++ b/src/xunit.runner.utility/xunit.runner.utility.csproj
+@@ -1,4 +1,4 @@
+-﻿<Project Sdk="MSBuild.Sdk.Extras">
++﻿<Project Sdk="Microsoft.NET.SDK">
+ 
+   <PropertyGroup>
+     <AssemblyName Condition=" '$(TargetFramework)' == 'net35' ">xunit.runner.utility.net35</AssemblyName>
+@@ -10,7 +10,7 @@
+     <DefineConstants Condition=" '$(TargetFramework)' == 'uap10.0' ">$(DefineConstants);WINDOWS_UAP</DefineConstants>
+     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+     <RootNamespace>Xunit</RootNamespace>
+-    <TargetFrameworks>net35;net452;netstandard1.1;netstandard1.5;netcoreapp1.0;uap10.0</TargetFrameworks>
++    <TargetFrameworks>netstandard1.1;netstandard1.5</TargetFrameworks>
+   </PropertyGroup>
+ 
+   <ItemGroup>
+diff --git a/xunit-notests.slnf b/xunit-notests.slnf
+new file mode 100644
+index 00000000..c0c7d8cb
+--- /dev/null
++++ b/xunit-notests.slnf
+@@ -0,0 +1,13 @@
++{
++  "solution": {
++    "path": "xunit.sln",
++    "projects": [
++      "src\\xunit.console\\xunit.console.csproj",
++      "src\\xunit.core\\xunit.core.csproj",
++      "src\\xunit.execution\\xunit.execution.csproj",
++      "src\\xunit.runner.assemblies\\xunit.runner.assemblies.csproj",
++      "src\\xunit.runner.reporters\\xunit.runner.reporters.csproj",
++      "src\\xunit.runner.utility\\xunit.runner.utility.csproj",
++    ]
++  }
++}
+\ No newline at end of file
+-- 
+2.41.0.windows.1
+
