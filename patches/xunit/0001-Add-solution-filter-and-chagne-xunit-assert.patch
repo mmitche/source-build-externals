@@ -1,0 +1,56 @@
+From 88973f8c9b71a31548798ff33374ab4b17b3bddc Mon Sep 17 00:00:00 2001
+From: Matt Mitchell <mmitche@microsoft.com>
+Date: Wed, 14 Jun 2023 14:42:33 -0700
+Subject: [PATCH] Add solution filter and chagne xunit assert
+
+---
+ src/xunit.assert/xunit.assert.csproj | 11 -----------
+ xunit-notests.slnf                   | 15 +++++++++++++++
+ 2 files changed, 15 insertions(+), 11 deletions(-)
+ create mode 100644 xunit-notests.slnf
+
+diff --git a/src/xunit.assert/xunit.assert.csproj b/src/xunit.assert/xunit.assert.csproj
+index 40e37a96..da198397 100644
+--- a/src/xunit.assert/xunit.assert.csproj
++++ b/src/xunit.assert/xunit.assert.csproj
+@@ -7,15 +7,4 @@
+     <TargetFramework>netstandard1.1</TargetFramework>
+   </PropertyGroup>
+ 
+-  <ItemGroup>
+-    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.160">
+-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-      <PrivateAssets>all</PrivateAssets>
+-    </PackageReference>
+-  </ItemGroup>
+-
+-  <ItemGroup>
+-    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[5.0.0]" />
+-  </ItemGroup>
+-
+ </Project>
+diff --git a/xunit-notests.slnf b/xunit-notests.slnf
+new file mode 100644
+index 00000000..836d876b
+--- /dev/null
++++ b/xunit-notests.slnf
+@@ -0,0 +1,15 @@
++{
++  "solution": {
++    "path": "xunit.sln",
++    "projects": [
++      "src\\xunit.assert\\xunit.assert.csproj",
++      "src\\xunit.console\\xunit.console.csproj",
++      "src\\xunit.core\\xunit.core.csproj",
++      "src\\xunit.execution\\xunit.execution.csproj",
++      "src\\xunit.runner.assemblies\\xunit.runner.assemblies.csproj",
++      "src\\xunit.runner.msbuild\\xunit.runner.msbuild.csproj",
++      "src\\xunit.runner.reporters\\xunit.runner.reporters.csproj",
++      "src\\xunit.runner.utility\\xunit.runner.utility.csproj",
++    ]
++  }
++}
+\ No newline at end of file
+-- 
+2.41.0.windows.1
+
