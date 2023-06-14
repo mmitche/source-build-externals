@@ -1,28 +1,31 @@
-From 063312f973d078fd2048414cd4167ba6455ceec5 Mon Sep 17 00:00:00 2001
+From d82292c1519f17133c6cc69382c51254704dc648 Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Wed, 14 Jun 2023 15:16:42 -0700
+Date: Wed, 14 Jun 2023 15:22:56 -0700
 Subject: [PATCH] Remove some more target frameworks
 
 ---
- global.json                                         |  3 ---
+ global.json                                         |  5 +++--
  src/xunit.assert/xunit.assert.csproj                | 11 -----------
  src/xunit.console/xunit.console.csproj              |  2 +-
  src/xunit.execution/xunit.execution.csproj          |  2 +-
  .../xunit.runner.assemblies.csproj                  |  2 +-
  .../xunit.runner.utility.csproj                     |  4 ++--
  xunit-notests.slnf                                  | 13 +++++++++++++
- 7 files changed, 18 insertions(+), 19 deletions(-)
+ 7 files changed, 21 insertions(+), 18 deletions(-)
  create mode 100644 xunit-notests.slnf
 
 diff --git a/global.json b/global.json
-index ebd1966e..2c63c085 100644
+index ebd1966e..9f784193 100644
 --- a/global.json
 +++ b/global.json
-@@ -1,5 +1,2 @@
+@@ -1,5 +1,6 @@
  {
 -  "msbuild-sdks": {
 -    "MSBuild.Sdk.Extras": "3.0.38"
--  }
++  "sdk": {
++    "version": "6.0.0",
++    "rollForward": "latestMinor"
+   }
  }
 diff --git a/src/xunit.assert/xunit.assert.csproj b/src/xunit.assert/xunit.assert.csproj
 index 40e37a96..da198397 100644
