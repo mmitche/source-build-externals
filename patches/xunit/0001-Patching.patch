@@ -1,17 +1,18 @@
-From ac496943413029c63fdc0cb2ea84c79714ce5791 Mon Sep 17 00:00:00 2001
+From 29e9f4604110c281f7394c8a8053df6af9921c6b Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Wed, 14 Jun 2023 15:41:50 -0700
+Date: Thu, 15 Jun 2023 10:34:00 -0700
 Subject: [PATCH] Patching
 
 ---
  global.json                                           |  5 -----
  src/xunit.assert/xunit.assert.csproj                  | 11 -----------
  src/xunit.console/xunit.console.csproj                |  2 +-
- src/xunit.execution/xunit.execution.csproj            |  2 +-
+ src/xunit.core/xunit.core.csproj                      |  6 +++---
+ src/xunit.execution/xunit.execution.csproj            |  8 ++++----
  .../xunit.runner.assemblies.csproj                    |  2 +-
  src/xunit.runner.utility/xunit.runner.utility.csproj  |  4 ++--
  xunit-notests.slnf                                    |  9 +++++++++
- 7 files changed, 14 insertions(+), 21 deletions(-)
+ 8 files changed, 20 insertions(+), 27 deletions(-)
  delete mode 100644 global.json
  create mode 100644 xunit-notests.slnf
 
@@ -59,8 +60,25 @@ index 3de40dc8..f98ce5b0 100644
    </PropertyGroup>
  
    <ItemGroup>
+diff --git a/src/xunit.core/xunit.core.csproj b/src/xunit.core/xunit.core.csproj
+index acbc33ca..d54c2ef3 100644
+--- a/src/xunit.core/xunit.core.csproj
++++ b/src/xunit.core/xunit.core.csproj
+@@ -11,9 +11,9 @@
+     <Compile Include="..\common\Guard.cs" LinkBase="Common" />
+     <Compile Include="..\common\TestMethodDisplay.cs" LinkBase="Common" />
+     <Compile Include="..\common\TestMethodDisplayOptions.cs" LinkBase="Common" />
+-    <Compile Include="..\xunit.assert\Asserts\Sdk\ArgumentFormatter.cs" LinkBase="Common\Asserts" />
+-    <Compile Include="..\xunit.assert\Asserts\Sdk\AssertEqualityComparer.cs" LinkBase="Common\Asserts" />
+-    <Compile Include="..\xunit.assert\Asserts\Sdk\AssertEqualityComparerAdapter.cs" LinkBase="Common\Asserts" />
++    <Compile Include="..\..\xunit.assert\Asserts\Sdk\ArgumentFormatter.cs" LinkBase="Common\Asserts" />
++    <Compile Include="..\..\xunit.assert\Asserts\Sdk\AssertEqualityComparer.cs" LinkBase="Common\Asserts" />
++    <Compile Include="..\..\xunit.assert\Asserts\Sdk\AssertEqualityComparerAdapter.cs" LinkBase="Common\Asserts" />
+   </ItemGroup>
+ 
+   <ItemGroup>
 diff --git a/src/xunit.execution/xunit.execution.csproj b/src/xunit.execution/xunit.execution.csproj
-index 43174d1f..6c1eb836 100644
+index 43174d1f..ef231d91 100644
 --- a/src/xunit.execution/xunit.execution.csproj
 +++ b/src/xunit.execution/xunit.execution.csproj
 @@ -6,7 +6,7 @@
@@ -70,6 +88,19 @@ index 43174d1f..6c1eb836 100644
 -    <TargetFrameworks>net452;netstandard1.1</TargetFrameworks>
 +    <TargetFrameworks>netstandard1.1</TargetFrameworks>
    </PropertyGroup>
+ 
+   <ItemGroup>
+@@ -26,9 +26,9 @@
+     <Compile Include="..\common\XunitSerializationInfo.cs" LinkBase="Common" />
+     <Compile Include="..\common\XunitWorkerThread.cs" LinkBase="Common" />
+     <Compile Include="..\messages\**\*.cs" LinkBase="Messages" />
+-    <Compile Include="..\xunit.assert\Asserts\Sdk\ArgumentFormatter.cs" LinkBase="Common\Asserts" />
+-    <Compile Include="..\xunit.assert\Asserts\Sdk\AssertEqualityComparer.cs" LinkBase="Common\Asserts" />
+-    <Compile Include="..\xunit.assert\Asserts\Sdk\AssertEqualityComparerAdapter.cs" LinkBase="Common\Asserts" />
++    <Compile Include="..\..\xunit.assert\Asserts\Sdk\ArgumentFormatter.cs" LinkBase="Common\Asserts" />
++    <Compile Include="..\..\xunit.assert\Asserts\Sdk\AssertEqualityComparer.cs" LinkBase="Common\Asserts" />
++    <Compile Include="..\..\xunit.assert\Asserts\Sdk\AssertEqualityComparerAdapter.cs" LinkBase="Common\Asserts" />
+   </ItemGroup>
  
    <ItemGroup>
 diff --git a/src/xunit.runner.assemblies/xunit.runner.assemblies.csproj b/src/xunit.runner.assemblies/xunit.runner.assemblies.csproj
