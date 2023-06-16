@@ -11,6 +11,8 @@
       <PropertyGroup>
         <BuildCommandArgs>$(ProjectDirectory)/xunit-notests.slnf</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:Configuration=$(Configuration)</BuildCommandArgs>
+        <BuildCommandArgs>$(BuildCommandArgs) /p:MicrosoftSourceLinkGitHubVersion=$(MicrosoftSourceLinkGitHubVersion)</BuildCommandArgs>
+        <BuildCommandArgs>$(BuildCommandArgs) /p:PackageVersion=2.4.2</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:DelaySign=$(DelaySign)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:PublicSign=$(PublicSign)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /v:$(LogVerbosity)</BuildCommandArgs>

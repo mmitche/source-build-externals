@@ -1,18 +1,19 @@
-From 0931d6c31beca6ef8a86e6d26920ba38846c7168 Mon Sep 17 00:00:00 2001
+From 12fb3c6ddd2eb1ca992e76139465b7a9be6e0662 Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Thu, 15 Jun 2023 10:39:11 -0700
+Date: Fri, 16 Jun 2023 13:05:43 -0700
 Subject: [PATCH] Patching
 
 ---
- global.json                                           |  5 -----
- src/xunit.assert/xunit.assert.csproj                  | 11 -----------
- src/xunit.console/xunit.console.csproj                |  2 +-
- src/xunit.core/xunit.core.csproj                      |  6 +++---
- src/xunit.execution/xunit.execution.csproj            |  8 ++++----
- .../xunit.runner.assemblies.csproj                    |  2 +-
- src/xunit.runner.utility/xunit.runner.utility.csproj  |  4 ++--
- xunit-notests.slnf                                    |  9 +++++++++
- 8 files changed, 20 insertions(+), 27 deletions(-)
+ global.json                                         |  5 -----
+ src/Directory.Build.props                           |  7 ++-----
+ src/xunit.assert/xunit.assert.csproj                | 13 +------------
+ src/xunit.console/xunit.console.csproj              |  2 +-
+ src/xunit.core/xunit.core.csproj                    |  9 +++++----
+ src/xunit.execution/xunit.execution.csproj          |  8 ++++----
+ .../xunit.runner.assemblies.csproj                  |  2 +-
+ .../xunit.runner.utility.csproj                     |  5 +++--
+ xunit-notests.slnf                                  |  9 +++++++++
+ 9 files changed, 26 insertions(+), 34 deletions(-)
  delete mode 100644 global.json
  create mode 100644 xunit-notests.slnf
 
@@ -27,12 +28,41 @@ index ebd1966e..00000000
 -    "MSBuild.Sdk.Extras": "3.0.38"
 -  }
 -}
+diff --git a/src/Directory.Build.props b/src/Directory.Build.props
+index 95cabfab..4e1bce0c 100644
+--- a/src/Directory.Build.props
++++ b/src/Directory.Build.props
+@@ -22,6 +22,7 @@
+     <TargetPlatformMinVersion Condition=" '$(TargetFramework)' == 'uap10.0' ">10.0.16299.0</TargetPlatformMinVersion>
+     <TargetPlatformVersion Condition=" '$(TargetFramework)' == 'uap10.0' ">10.0.19041.0</TargetPlatformVersion>
+     <WarningsAsErrors>true</WarningsAsErrors>
++    <Version>$(PackageVersion)</Version>
+   </PropertyGroup>
+ 
+   <ItemGroup>
+@@ -29,11 +30,7 @@
+   </ItemGroup>
+ 
+   <ItemGroup>
+-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
+-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.108">
+-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+-      <PrivateAssets>all</PrivateAssets>
+-    </PackageReference>
++    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubVersion)" PrivateAssets="all" />
+   </ItemGroup>
+ 
+ </Project>
 diff --git a/src/xunit.assert/xunit.assert.csproj b/src/xunit.assert/xunit.assert.csproj
-index 40e37a96..da198397 100644
+index 40e37a96..29a41b43 100644
 --- a/src/xunit.assert/xunit.assert.csproj
 +++ b/src/xunit.assert/xunit.assert.csproj
-@@ -7,15 +7,4 @@
-     <TargetFramework>netstandard1.1</TargetFramework>
+@@ -4,18 +4,7 @@
+     <DefineConstants>$(DefineConstants);XUNIT_NULLABLE</DefineConstants>
+     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+     <Nullable>enable</Nullable>
+-    <TargetFramework>netstandard1.1</TargetFramework>
++    <TargetFramework>netstandard2.0</TargetFramework>
    </PropertyGroup>
  
 -  <ItemGroup>
@@ -61,10 +91,20 @@ index 3de40dc8..f98ce5b0 100644
  
    <ItemGroup>
 diff --git a/src/xunit.core/xunit.core.csproj b/src/xunit.core/xunit.core.csproj
-index acbc33ca..7ba3a22f 100644
+index acbc33ca..13aadbeb 100644
 --- a/src/xunit.core/xunit.core.csproj
 +++ b/src/xunit.core/xunit.core.csproj
-@@ -11,9 +11,9 @@
+@@ -3,7 +3,8 @@
+   <PropertyGroup>
+     <DefineConstants>$(DefineConstants);XUNIT_FRAMEWORK</DefineConstants>
+     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+-    <TargetFramework>netstandard1.1</TargetFramework>
++    <Packable>true</Packable>
++    <TargetFramework>netstandard.20</TargetFramework>
+   </PropertyGroup>
+ 
+   <ItemGroup>
+@@ -11,9 +12,9 @@
      <Compile Include="..\common\Guard.cs" LinkBase="Common" />
      <Compile Include="..\common\TestMethodDisplay.cs" LinkBase="Common" />
      <Compile Include="..\common\TestMethodDisplayOptions.cs" LinkBase="Common" />
@@ -117,7 +157,7 @@ index 5ca7d4c9..8f530055 100644
  
    <ItemGroup>
 diff --git a/src/xunit.runner.utility/xunit.runner.utility.csproj b/src/xunit.runner.utility/xunit.runner.utility.csproj
-index 5f0cb1a8..272c900f 100644
+index 5f0cb1a8..d3eda758 100644
 --- a/src/xunit.runner.utility/xunit.runner.utility.csproj
 +++ b/src/xunit.runner.utility/xunit.runner.utility.csproj
 @@ -1,4 +1,4 @@
@@ -126,12 +166,13 @@ index 5f0cb1a8..272c900f 100644
  
    <PropertyGroup>
      <AssemblyName Condition=" '$(TargetFramework)' == 'net35' ">xunit.runner.utility.net35</AssemblyName>
-@@ -10,7 +10,7 @@
+@@ -10,7 +10,8 @@
      <DefineConstants Condition=" '$(TargetFramework)' == 'uap10.0' ">$(DefineConstants);WINDOWS_UAP</DefineConstants>
      <GenerateDocumentationFile>true</GenerateDocumentationFile>
      <RootNamespace>Xunit</RootNamespace>
 -    <TargetFrameworks>net35;net452;netstandard1.1;netstandard1.5;netcoreapp1.0;uap10.0</TargetFrameworks>
-+    <TargetFrameworks>netstandard1.1;netstandard1.5</TargetFrameworks>
++    <Packable>true</Packable>
++    <TargetFrameworks>netstandard2.0</TargetFrameworks>
    </PropertyGroup>
  
    <ItemGroup>
