@@ -1,6 +1,6 @@
-From 12fb3c6ddd2eb1ca992e76139465b7a9be6e0662 Mon Sep 17 00:00:00 2001
+From c5e8db8fe92128639f125e9cbb6d2507bc52d433 Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Fri, 16 Jun 2023 13:05:43 -0700
+Date: Fri, 16 Jun 2023 13:08:43 -0700
 Subject: [PATCH] Patching
 
 ---
@@ -91,7 +91,7 @@ index 3de40dc8..f98ce5b0 100644
  
    <ItemGroup>
 diff --git a/src/xunit.core/xunit.core.csproj b/src/xunit.core/xunit.core.csproj
-index acbc33ca..13aadbeb 100644
+index acbc33ca..4e809912 100644
 --- a/src/xunit.core/xunit.core.csproj
 +++ b/src/xunit.core/xunit.core.csproj
 @@ -3,7 +3,8 @@
@@ -100,7 +100,7 @@ index acbc33ca..13aadbeb 100644
      <GenerateDocumentationFile>true</GenerateDocumentationFile>
 -    <TargetFramework>netstandard1.1</TargetFramework>
 +    <Packable>true</Packable>
-+    <TargetFramework>netstandard.20</TargetFramework>
++    <TargetFramework>netstandard2.0</TargetFramework>
    </PropertyGroup>
  
    <ItemGroup>
