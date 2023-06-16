@@ -1,12 +1,12 @@
-From 505336acadd88f464fedeb14c6cd589460b9f170 Mon Sep 17 00:00:00 2001
+From be553bc779d73981cde84753edd299cdce5e2007 Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Fri, 16 Jun 2023 10:50:17 -0700
+Date: Fri, 16 Jun 2023 11:56:50 -0700
 Subject: [PATCH] Patching
 
 ---
- global.json                                      | 6 ------
- src/xunit.abstractions/xunit.abstractions.csproj | 9 +--------
- 2 files changed, 1 insertion(+), 14 deletions(-)
+ global.json                                      |  6 ------
+ src/xunit.abstractions/xunit.abstractions.csproj | 11 +++--------
+ 2 files changed, 3 insertions(+), 14 deletions(-)
  delete mode 100644 global.json
 
 diff --git a/global.json b/global.json
@@ -22,14 +22,16 @@ index 9f78419..0000000
 -  }
 -}
 diff --git a/src/xunit.abstractions/xunit.abstractions.csproj b/src/xunit.abstractions/xunit.abstractions.csproj
-index fa4cf23..a52e4fc 100644
+index fa4cf23..5d61131 100644
 --- a/src/xunit.abstractions/xunit.abstractions.csproj
 +++ b/src/xunit.abstractions/xunit.abstractions.csproj
-@@ -9,14 +9,7 @@
+@@ -9,14 +9,9 @@
      <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
      <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
      <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
 -    <TargetFrameworks>net35;netstandard1.0</TargetFrameworks>
++    <Packable>true</Packable>
++    <Version>$(PackageVersion)</Version>
 +    <TargetFrameworks>netstandard2.0</TargetFrameworks>
    </PropertyGroup>
  
