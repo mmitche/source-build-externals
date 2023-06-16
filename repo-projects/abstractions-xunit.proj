@@ -2,7 +2,7 @@
     <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   
     <PropertyGroup>
-      <PackagesOutput>$(ProjectDirectory)/src/abstractions-xunit/bin/$(Configuration)/</PackagesOutput>
+      <PackagesOutput>$(ProjectDirectory)/src/xunit.abstractions/bin/$(Configuration)/</PackagesOutput>
     </PropertyGroup>
   
     <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
@@ -11,7 +11,7 @@
       <PropertyGroup>
         <BuildCommandArgs>$(ProjectDirectory)/xunit.abstractions.sln</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:Configuration=$(Configuration)</BuildCommandArgs>
-        <BuildCommandArgs>$(BuildCommandArgs) /p:PackageVersion=$(PackageVersion)</BuildCommandArgs>
+        <BuildCommandArgs>$(BuildCommandArgs) /p:PackageVersion=2.0.3</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /v:$(LogVerbosity)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) $(RedirectRepoOutputToLog)</BuildCommandArgs>
       </PropertyGroup>

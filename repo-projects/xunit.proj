@@ -2,7 +2,7 @@
     <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   
     <PropertyGroup>
-      <PackagesOutput>$(ProjectDirectory)/src/xunit/bin/$(Configuration)/</PackagesOutput>
+      <PackagesOutput>$(ProjectDirectory)/bin/$(Configuration)</PackagesOutput>
     </PropertyGroup>
   
     <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
@@ -14,6 +14,7 @@
         <BuildCommandArgs>$(BuildCommandArgs) /p:DelaySign=$(DelaySign)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:PublicSign=$(PublicSign)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /v:$(LogVerbosity)</BuildCommandArgs>
+        <BuildCommandArgs>$(BuildCommandArgs) /p:PackageOutputDir=$(PackagesOutput)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) $(RedirectRepoOutputToLog)</BuildCommandArgs>
       </PropertyGroup>
   
