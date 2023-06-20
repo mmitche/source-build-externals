@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dependencies>
   <ToolsetDependencies>
-    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="8.0.0-beta.23316.9">
-      <Uri>https://dev.azure.com/dnceng/internal/_git/dotnet-arcade</Uri>
-      <Sha>aba6e9aef1afeb65ae2085a85eb01605c19e3c42</Sha>
+    <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="8.0.0-beta.23316.8">
+      <Uri>https://github.com/dotnet/arcade</Uri>
+      <Sha>1c03237c655b2cbedf7114385be3706b30982334</Sha>
       <SourceBuild RepoName="arcade" ManagedOnly="true" />
     </Dependency>
     <Dependency Name="Microsoft.SourceLink.GitHub" Version="8.0.0-beta.23309.3" CoherentParentDependency="Microsoft.DotNet.Arcade.Sdk">
