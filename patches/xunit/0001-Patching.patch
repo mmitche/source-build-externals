@@ -1,6 +1,6 @@
-From c02dfc8a831c72dc301613aabab943939ebd74be Mon Sep 17 00:00:00 2001
+From 6a6fa671207b05076f7eeb0d3e51b9be557ff344 Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Tue, 11 Jul 2023 15:50:29 -0700
+Date: Tue, 11 Jul 2023 16:23:32 -0700
 Subject: [PATCH] Patching
 
 ---
@@ -10,10 +10,11 @@ Subject: [PATCH] Patching
  src/xunit.assert/xunit.assert.csproj          | 13 +-----------
  src/xunit.core/xunit.core.csproj              |  2 +-
  src/xunit.execution/xunit.execution.csproj    |  2 +-
+ src/xunit.extensibility.core.nuspec           | 15 +++----------
  .../xunit.runner.assemblies.csproj            |  2 +-
  .../xunit.runner.utility.csproj               |  5 +++--
  xunit-notests.slnf                            |  9 ++++++++
- 9 files changed, 21 insertions(+), 48 deletions(-)
+ 10 files changed, 24 insertions(+), 60 deletions(-)
  delete mode 100644 global.json
  create mode 100644 xunit-notests.slnf
 
@@ -136,6 +137,38 @@ index 43174d1f..f0594aa9 100644
    </PropertyGroup>
  
    <ItemGroup>
+diff --git a/src/xunit.extensibility.core.nuspec b/src/xunit.extensibility.core.nuspec
+index 4063c36e..05bb0c51 100644
+--- a/src/xunit.extensibility.core.nuspec
++++ b/src/xunit.extensibility.core.nuspec
+@@ -16,10 +16,7 @@
+       <reference file="xunit.core.xml" />
+     </references>
+     <dependencies>
+-      <group targetFramework="net452">
+-        <dependency id="xunit.abstractions" version="2.0.3" />
+-      </group>
+-      <group targetFramework="netstandard1.1">
++      <group targetFramework="netstandard2.0">
+         <dependency id="NETStandard.Library" version="1.6.1" />
+         <dependency id="xunit.abstractions" version="2.0.3" />
+       </group>
+@@ -28,13 +25,7 @@
+   <files>
+     <file target="_content\" src="..\tools\media\logo-128-transparent.png" />
+ 
+-    <file src="xunit.core\bin\$Configuration$\netstandard1.1\xunit.core.dll"                  target="lib\net452\" />
+-    <file src="xunit.core\bin\$Configuration$\netstandard1.1\xunit.core.dll.tdnet"            target="lib\net452\" />
+-    <file src="xunit.core\bin\$Configuration$\netstandard1.1\xunit.core.xml"                  target="lib\net452\" />
+-    <file src="xunit.runner.tdnet\bin\$Configuration$\net452\xunit.runner.tdnet.dll"          target="lib\net452\" />
+-    <file src="xunit.runner.tdnet\bin\$Configuration$\net452\xunit.runner.utility.net452.dll" target="lib\net452\" />
+-
+-    <file src="xunit.core\bin\$Configuration$\netstandard1.1\xunit.core.dll" target="lib\netstandard1.1\" />
+-    <file src="xunit.core\bin\$Configuration$\netstandard1.1\xunit.core.xml" target="lib\netstandard1.1\" />
++    <file src="xunit.core\bin\$Configuration$\netstandard2.0\xunit.core.dll" target="lib\netstandard2.0\" />
++    <file src="xunit.core\bin\$Configuration$\netstandard2.0\xunit.core.xml" target="lib\netstandard2.0\" />
+   </files>
+ </package>
 diff --git a/src/xunit.runner.assemblies/xunit.runner.assemblies.csproj b/src/xunit.runner.assemblies/xunit.runner.assemblies.csproj
 index 5ca7d4c9..8f530055 100644
 --- a/src/xunit.runner.assemblies/xunit.runner.assemblies.csproj
