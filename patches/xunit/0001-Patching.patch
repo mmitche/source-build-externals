@@ -1,6 +1,6 @@
-From 5e92b2493a4914218d3c3844f749aa923d0e7d8c Mon Sep 17 00:00:00 2001
+From 873305510b5b08a4c46a62e56cf272fe73a47fd6 Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Tue, 11 Jul 2023 16:43:27 -0700
+Date: Tue, 11 Jul 2023 16:47:01 -0700
 Subject: [PATCH] Patching
 
 ---
@@ -10,13 +10,13 @@ Subject: [PATCH] Patching
  src/xunit.assert/xunit.assert.csproj          | 13 +-----
  src/xunit.core/xunit.core.csproj              |  2 +-
  src/xunit.execution/xunit.execution.csproj    |  4 +-
- src/xunit.extensibility.core.nuspec           | 15 ++-----
+ src/xunit.extensibility.core.nuspec           | 17 ++------
  src/xunit.extensibility.execution.nuspec      | 14 ++----
  .../xunit.runner.assemblies.csproj            |  2 +-
  src/xunit.runner.utility.nuspec               | 43 ++-----------------
  .../xunit.runner.utility.csproj               | 12 ++----
  xunit-notests.slnf                            | 10 +++++
- 12 files changed, 34 insertions(+), 117 deletions(-)
+ 12 files changed, 35 insertions(+), 118 deletions(-)
  delete mode 100644 global.json
  create mode 100644 xunit-notests.slnf
 
@@ -145,10 +145,10 @@ index 43174d1f..b65b4e60 100644
  
    <ItemGroup>
 diff --git a/src/xunit.extensibility.core.nuspec b/src/xunit.extensibility.core.nuspec
-index 4063c36e..05bb0c51 100644
+index 4063c36e..7c9247c0 100644
 --- a/src/xunit.extensibility.core.nuspec
 +++ b/src/xunit.extensibility.core.nuspec
-@@ -16,10 +16,7 @@
+@@ -16,11 +16,8 @@
        <reference file="xunit.core.xml" />
      </references>
      <dependencies>
@@ -156,10 +156,12 @@ index 4063c36e..05bb0c51 100644
 -        <dependency id="xunit.abstractions" version="2.0.3" />
 -      </group>
 -      <group targetFramework="netstandard1.1">
+-        <dependency id="NETStandard.Library" version="1.6.1" />
 +      <group targetFramework="netstandard2.0">
-         <dependency id="NETStandard.Library" version="1.6.1" />
++        <dependency id="NETStandard.Library" version="2.0.3" />
          <dependency id="xunit.abstractions" version="2.0.3" />
        </group>
+     </dependencies>
 @@ -28,13 +25,7 @@
    <files>
      <file target="_content\" src="..\tools\media\logo-128-transparent.png" />
