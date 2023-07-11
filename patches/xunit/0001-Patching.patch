@@ -1,18 +1,18 @@
-From 0b81e12babffb9ed6d63fef85a18dd63254d6cfa Mon Sep 17 00:00:00 2001
+From 17ace55836c3a7a91fcb47e6feb0ab0b5b63db0a Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Wed, 21 Jun 2023 16:08:09 -0700
+Date: Tue, 11 Jul 2023 10:58:03 -0700
 Subject: [PATCH] Patching
 
 ---
  global.json                                         |  5 -----
- src/Directory.Build.props                           |  7 ++-----
+ src/Directory.Build.props                           | 10 +++++-----
  src/xunit.assert/xunit.assert.csproj                | 13 +------------
  src/xunit.core/xunit.core.csproj                    |  3 ++-
  src/xunit.execution/xunit.execution.csproj          |  2 +-
  .../xunit.runner.assemblies.csproj                  |  2 +-
  .../xunit.runner.utility.csproj                     |  5 +++--
  xunit-notests.slnf                                  |  9 +++++++++
- 8 files changed, 19 insertions(+), 27 deletions(-)
+ 8 files changed, 22 insertions(+), 27 deletions(-)
  delete mode 100644 global.json
  create mode 100644 xunit-notests.slnf
 
@@ -28,18 +28,21 @@ index ebd1966e..00000000
 -  }
 -}
 diff --git a/src/Directory.Build.props b/src/Directory.Build.props
-index 95cabfab..4e1bce0c 100644
+index 95cabfab..31251372 100644
 --- a/src/Directory.Build.props
 +++ b/src/Directory.Build.props
-@@ -22,6 +22,7 @@
+@@ -22,6 +22,10 @@
      <TargetPlatformMinVersion Condition=" '$(TargetFramework)' == 'uap10.0' ">10.0.16299.0</TargetPlatformMinVersion>
      <TargetPlatformVersion Condition=" '$(TargetFramework)' == 'uap10.0' ">10.0.19041.0</TargetPlatformVersion>
      <WarningsAsErrors>true</WarningsAsErrors>
++    <PackageVersion>2.4.2</PackageVersion>
++    <AssemblyVersion>$(PackageVersion)</AssemblyVersion>
++    <AssemblyFileVersion>$(PackageVersion)</AssemblyFileVersion>
 +    <Version>$(PackageVersion)</Version>
    </PropertyGroup>
  
    <ItemGroup>
-@@ -29,11 +30,7 @@
+@@ -29,11 +33,7 @@
    </ItemGroup>
  
    <ItemGroup>
@@ -153,5 +156,5 @@ index 00000000..4101bb16
 +}
 \ No newline at end of file
 -- 
-2.41.0.windows.1
+2.41.0.windows.2
 
