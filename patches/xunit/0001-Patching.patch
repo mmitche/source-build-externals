@@ -1,6 +1,6 @@
-From a325b5baf3b4a42c9e07ad37534fcfb1533ffb24 Mon Sep 17 00:00:00 2001
+From 3d7edb1e3f7de1b2203c27ad007d5f994613ec7d Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Tue, 11 Jul 2023 11:00:00 -0700
+Date: Tue, 11 Jul 2023 15:39:11 -0700
 Subject: [PATCH] Patching
 
 ---
@@ -8,12 +8,12 @@ Subject: [PATCH] Patching
  src/Directory.Build.props                     | 10 ++++-----
  src/Directory.Build.targets                   | 21 -------------------
  src/xunit.assert/xunit.assert.csproj          | 13 +-----------
- src/xunit.core/xunit.core.csproj              |  3 ++-
+ src/xunit.core/xunit.core.csproj              |  4 ++--
  src/xunit.execution/xunit.execution.csproj    |  2 +-
  .../xunit.runner.assemblies.csproj            |  2 +-
  .../xunit.runner.utility.csproj               |  5 +++--
  xunit-notests.slnf                            |  9 ++++++++
- 9 files changed, 22 insertions(+), 48 deletions(-)
+ 9 files changed, 22 insertions(+), 49 deletions(-)
  delete mode 100644 global.json
  create mode 100644 xunit-notests.slnf
 
@@ -111,19 +111,27 @@ index 40e37a96..29a41b43 100644
 -
  </Project>
 diff --git a/src/xunit.core/xunit.core.csproj b/src/xunit.core/xunit.core.csproj
-index acbc33ca..499a7721 100644
+index acbc33ca..47c8d603 100644
 --- a/src/xunit.core/xunit.core.csproj
 +++ b/src/xunit.core/xunit.core.csproj
-@@ -3,7 +3,8 @@
+@@ -3,7 +3,7 @@
    <PropertyGroup>
      <DefineConstants>$(DefineConstants);XUNIT_FRAMEWORK</DefineConstants>
      <GenerateDocumentationFile>true</GenerateDocumentationFile>
 -    <TargetFramework>netstandard1.1</TargetFramework>
-+    <Packable>true</Packable>
 +    <TargetFramework>netstandard2.0</TargetFramework>
    </PropertyGroup>
  
    <ItemGroup>
+@@ -17,7 +17,7 @@
+   </ItemGroup>
+ 
+   <ItemGroup>
+-    <Content Include="xunit.core.dll.tdnet">
++    <Content Include="">
+       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+     </Content>
+   </ItemGroup>
 diff --git a/src/xunit.execution/xunit.execution.csproj b/src/xunit.execution/xunit.execution.csproj
 index 43174d1f..f0594aa9 100644
 --- a/src/xunit.execution/xunit.execution.csproj
