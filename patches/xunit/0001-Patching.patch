@@ -1,6 +1,6 @@
-From e83a90712fd1129e4d9453dfe8fb4dbaf54ec3de Mon Sep 17 00:00:00 2001
+From 5e92b2493a4914218d3c3844f749aa923d0e7d8c Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Tue, 11 Jul 2023 16:33:01 -0700
+Date: Tue, 11 Jul 2023 16:43:27 -0700
 Subject: [PATCH] Patching
 
 ---
@@ -9,14 +9,14 @@ Subject: [PATCH] Patching
  src/Directory.Build.targets                   | 21 ---------
  src/xunit.assert/xunit.assert.csproj          | 13 +-----
  src/xunit.core/xunit.core.csproj              |  2 +-
- src/xunit.execution/xunit.execution.csproj    |  2 +-
+ src/xunit.execution/xunit.execution.csproj    |  4 +-
  src/xunit.extensibility.core.nuspec           | 15 ++-----
  src/xunit.extensibility.execution.nuspec      | 14 ++----
  .../xunit.runner.assemblies.csproj            |  2 +-
  src/xunit.runner.utility.nuspec               | 43 ++-----------------
- .../xunit.runner.utility.csproj               |  4 +-
- xunit-notests.slnf                            |  9 ++++
- 12 files changed, 31 insertions(+), 109 deletions(-)
+ .../xunit.runner.utility.csproj               | 12 ++----
+ xunit-notests.slnf                            | 10 +++++
+ 12 files changed, 34 insertions(+), 117 deletions(-)
  delete mode 100644 global.json
  create mode 100644 xunit-notests.slnf
 
@@ -127,10 +127,15 @@ index acbc33ca..2ea18abc 100644
  
    <ItemGroup>
 diff --git a/src/xunit.execution/xunit.execution.csproj b/src/xunit.execution/xunit.execution.csproj
-index 43174d1f..f0594aa9 100644
+index 43174d1f..b65b4e60 100644
 --- a/src/xunit.execution/xunit.execution.csproj
 +++ b/src/xunit.execution/xunit.execution.csproj
-@@ -6,7 +6,7 @@
+@@ -2,11 +2,11 @@
+ 
+   <PropertyGroup>
+     <AssemblyName Condition=" '$(TargetFramework)' == 'net452' ">xunit.execution.desktop</AssemblyName>
+-    <AssemblyName Condition=" '$(TargetFramework)' == 'netstandard1.1' ">xunit.execution.dotnet</AssemblyName>
++    <AssemblyName Condition=" '$(TargetFramework)' == 'netstandard2.0' ">xunit.execution.dotnet</AssemblyName>
      <DefineConstants>$(DefineConstants);XUNIT_FRAMEWORK</DefineConstants>
      <GenerateDocumentationFile>true</GenerateDocumentationFile>
      <RootNamespace>Xunit.Sdk</RootNamespace>
@@ -278,17 +283,22 @@ index eba39303..930d81a5 100644
  </package>
 \ No newline at end of file
 diff --git a/src/xunit.runner.utility/xunit.runner.utility.csproj b/src/xunit.runner.utility/xunit.runner.utility.csproj
-index 5f0cb1a8..a1031756 100644
+index 5f0cb1a8..6293be58 100644
 --- a/src/xunit.runner.utility/xunit.runner.utility.csproj
 +++ b/src/xunit.runner.utility/xunit.runner.utility.csproj
-@@ -1,4 +1,4 @@
+@@ -1,16 +1,10 @@
 -﻿<Project Sdk="MSBuild.Sdk.Extras">
 +﻿<Project Sdk="Microsoft.NET.Sdk">
  
    <PropertyGroup>
-     <AssemblyName Condition=" '$(TargetFramework)' == 'net35' ">xunit.runner.utility.net35</AssemblyName>
-@@ -10,7 +10,7 @@
-     <DefineConstants Condition=" '$(TargetFramework)' == 'uap10.0' ">$(DefineConstants);WINDOWS_UAP</DefineConstants>
+-    <AssemblyName Condition=" '$(TargetFramework)' == 'net35' ">xunit.runner.utility.net35</AssemblyName>
+-    <AssemblyName Condition=" '$(TargetFramework)' == 'net452' ">xunit.runner.utility.net452</AssemblyName>
+-    <AssemblyName Condition=" '$(TargetFramework)' == 'netstandard1.1' ">xunit.runner.utility.netstandard11</AssemblyName>
+-    <AssemblyName Condition=" '$(TargetFramework)' == 'netstandard1.5' ">xunit.runner.utility.netstandard15</AssemblyName>
+-    <AssemblyName Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">xunit.runner.utility.netcoreapp10</AssemblyName>
+-    <AssemblyName Condition=" '$(TargetFramework)' == 'uap10.0' ">xunit.runner.utility.uwp10</AssemblyName>
+-    <DefineConstants Condition=" '$(TargetFramework)' == 'uap10.0' ">$(DefineConstants);WINDOWS_UAP</DefineConstants>
++    <AssemblyName Condition=" '$(TargetFramework)' == 'netstandard2.0' ">xunit.runner.utility.netstandard20</AssemblyName>
      <GenerateDocumentationFile>true</GenerateDocumentationFile>
      <RootNamespace>Xunit</RootNamespace>
 -    <TargetFrameworks>net35;net452;netstandard1.1;netstandard1.5;netcoreapp1.0;uap10.0</TargetFrameworks>
@@ -298,15 +308,16 @@ index 5f0cb1a8..a1031756 100644
    <ItemGroup>
 diff --git a/xunit-notests.slnf b/xunit-notests.slnf
 new file mode 100644
-index 00000000..4101bb16
+index 00000000..41d03844
 --- /dev/null
 +++ b/xunit-notests.slnf
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,10 @@
 +{
 +  "solution": {
 +    "path": "xunit.sln",
 +    "projects": [
 +      "src\\xunit.core\\xunit.core.csproj",
++      "src\\xunit.execution\\xunit.execution.csproj",
 +      "src\\xunit.runner.utility\\xunit.runner.utility.csproj",
 +    ]
 +  }
