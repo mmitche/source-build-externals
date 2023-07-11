@@ -22,7 +22,7 @@
 
       <ItemGroup>
         <PackEnvironmentVariables Include="@(EnvironmentVariables)" />
-        <PackEnvironmentVariables Include="NuspecProperties=&quot;PackageVersion=2.4.2;Configuration=$(Configuration)&quot;"/>
+        <PackEnvironmentVariables Include="NuspecProperties=&quot;PackageVersion=2.4.2%3BConfiguration=$(Configuration)&quot;"/>
       </ItemGroup>
   
       <Exec Command="$(DotnetToolCommand) restore /bl:restore.binlog $(BuildAndRestoreProject) $(BuildCommandArgs)  "
