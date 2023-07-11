@@ -18,7 +18,8 @@
         <BuildCommandArgs>$(BuildCommandArgs) /v:$(LogVerbosity)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:PackageOutputPath=$(PackagesOutput)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) $(RedirectRepoOutputToLog)</BuildCommandArgs>
-        <PackProperties>/p:NuspecProperties=&quot;PackageVersion=2.4.2;Configuration=$(Configuration)&quot;</PackProperties>
+        <PackEnvironmentVariables Include="@(EnvironmentVariables)" />
+        <PackEnvironmentVariables Include="NuspecProperties=&quot;PackageVersion=2.4.2;Configuration=$(Configuration)&quot;"/>
       </PropertyGroup>
   
       <Exec Command="$(DotnetToolCommand) restore /bl:restore.binlog $(BuildAndRestoreProject) $(BuildCommandArgs)  "
@@ -33,8 +34,8 @@
   
       <!-- xunit has a non-standard set of packaging. Instead of calling pack on the solution call it on each individual build project,
            with no-build and and no-restore, with the explicit nuspecs associated with the project. -->
-      <Exec Command="$(DotnetToolCommand) pack --no-build --no-restore /bl:pack.binlog $(ProjectDirectory)/src/xunit.core/xunit.core.csproj $(PackProperties) /p:NuspecFile=$(ProjectDirectory)/src/xunit.extensibility.core.nuspec /p:NuspecProperties=Con $(BuildCommandArgs)"
-            EnvironmentVariables="@(EnvironmentVariables)"
+      <Exec Command="$(DotnetToolCommand) pack --no-build --no-restore /bl:pack.binlog $(ProjectDirectory)/src/xunit.core/xunit.core.csproj /p:NuspecFile=$(ProjectDirectory)/src/xunit.extensibility.core.nuspec $(BuildCommandArgs)"
+            EnvironmentVariables="@(PackEnvironmentVariables)"
             WorkingDirectory="$(ProjectDirectory)"
             IgnoreStandardErrorWarningFormat="true" />
     </Target>
