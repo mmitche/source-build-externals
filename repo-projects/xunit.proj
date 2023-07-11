@@ -18,9 +18,12 @@
         <BuildCommandArgs>$(BuildCommandArgs) /v:$(LogVerbosity)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:PackageOutputPath=$(PackagesOutput)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) $(RedirectRepoOutputToLog)</BuildCommandArgs>
+      </PropertyGroup>
+
+      <ItemGroup>
         <PackEnvironmentVariables Include="@(EnvironmentVariables)" />
         <PackEnvironmentVariables Include="NuspecProperties=&quot;PackageVersion=2.4.2;Configuration=$(Configuration)&quot;"/>
-      </PropertyGroup>
+      </ItemGroup>
   
       <Exec Command="$(DotnetToolCommand) restore /bl:restore.binlog $(BuildAndRestoreProject) $(BuildCommandArgs)  "
             EnvironmentVariables="@(EnvironmentVariables)"
