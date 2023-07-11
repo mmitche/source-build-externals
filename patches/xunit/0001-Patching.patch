@@ -1,18 +1,19 @@
-From 17ace55836c3a7a91fcb47e6feb0ab0b5b63db0a Mon Sep 17 00:00:00 2001
+From a325b5baf3b4a42c9e07ad37534fcfb1533ffb24 Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Tue, 11 Jul 2023 10:58:03 -0700
+Date: Tue, 11 Jul 2023 11:00:00 -0700
 Subject: [PATCH] Patching
 
 ---
- global.json                                         |  5 -----
- src/Directory.Build.props                           | 10 +++++-----
- src/xunit.assert/xunit.assert.csproj                | 13 +------------
- src/xunit.core/xunit.core.csproj                    |  3 ++-
- src/xunit.execution/xunit.execution.csproj          |  2 +-
- .../xunit.runner.assemblies.csproj                  |  2 +-
- .../xunit.runner.utility.csproj                     |  5 +++--
- xunit-notests.slnf                                  |  9 +++++++++
- 8 files changed, 22 insertions(+), 27 deletions(-)
+ global.json                                   |  5 -----
+ src/Directory.Build.props                     | 10 ++++-----
+ src/Directory.Build.targets                   | 21 -------------------
+ src/xunit.assert/xunit.assert.csproj          | 13 +-----------
+ src/xunit.core/xunit.core.csproj              |  3 ++-
+ src/xunit.execution/xunit.execution.csproj    |  2 +-
+ .../xunit.runner.assemblies.csproj            |  2 +-
+ .../xunit.runner.utility.csproj               |  5 +++--
+ xunit-notests.slnf                            |  9 ++++++++
+ 9 files changed, 22 insertions(+), 48 deletions(-)
  delete mode 100644 global.json
  create mode 100644 xunit-notests.slnf
 
@@ -54,6 +55,36 @@ index 95cabfab..31251372 100644
 +    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubVersion)" PrivateAssets="all" />
    </ItemGroup>
  
+ </Project>
+diff --git a/src/Directory.Build.targets b/src/Directory.Build.targets
+index 87c4ea80..7fdf2a3d 100644
+--- a/src/Directory.Build.targets
++++ b/src/Directory.Build.targets
+@@ -7,25 +7,4 @@
+     <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">1.0.0</RuntimeFrameworkVersion>
+     <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">2.0.0</RuntimeFrameworkVersion>
+   </PropertyGroup>
+-
+-  <!-- Supplement Nerdbank.GitVersioning version calculations -->
+-  <Target Name="UpdateAssemblyVersionInfo" BeforeTargets="GenerateAssemblyNBGVVersionInfo" DependsOnTargets="GetBuildVersion">
+-    <PropertyGroup>
+-      <!-- AssemblyVersion and AssemblyFileVersion should be x.y.z.0 -->
+-      <AssemblyVersion>$(BuildVersionSimple)</AssemblyVersion>
+-      <AssemblyFileVersion>$(BuildVersionSimple)</AssemblyFileVersion>
+-      <!-- Always put the Git hash in the informational version, even for non-pre-release versions -->
+-      <AssemblyInformationalVersion>$(BuildVersionSimple)$(PrereleaseVersion)+$(GitCommitIdShort)</AssemblyInformationalVersion>
+-    </PropertyGroup>
+-  </Target>
+-
+-  <Target Name="UpdateNuSpecProperties" BeforeTargets="GenerateNuspec" DependsOnTargets="GetBuildVersion">
+-    <PropertyGroup>
+-      <!-- Never put the Git hash in the package version -->
+-      <PackageVersion>$(BuildVersionSimple)$(PrereleaseVersion)</PackageVersion>
+-      <!-- Pass through values we don't know ahead of time for any hand-crafted .nuspec files -->
+-      <NuspecProperties>PackageVersion=$(PackageVersion);GitCommitId=$(GitCommitId);Configuration=$(Configuration)</NuspecProperties>
+-    </PropertyGroup>
+-  </Target>
+-
  </Project>
 diff --git a/src/xunit.assert/xunit.assert.csproj b/src/xunit.assert/xunit.assert.csproj
 index 40e37a96..29a41b43 100644
