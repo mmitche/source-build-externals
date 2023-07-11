@@ -41,6 +41,21 @@
             EnvironmentVariables="@(PackEnvironmentVariables)"
             WorkingDirectory="$(ProjectDirectory)"
             IgnoreStandardErrorWarningFormat="true" />
+
+      <Exec Command="$(DotnetToolCommand) pack --no-build --no-restore /bl:pack.binlog $(ProjectDirectory)/src/xunit.execution/xunit.execution.csproj /p:NuspecFile=$(ProjectDirectory)/src/xunit.extensibility.execution.nuspec $(BuildCommandArgs)"
+            EnvironmentVariables="@(PackEnvironmentVariables)"
+            WorkingDirectory="$(ProjectDirectory)"
+            IgnoreStandardErrorWarningFormat="true" />
+      
+      <Exec Command="$(DotnetToolCommand) pack --no-build --no-restore /bl:pack.binlog $(ProjectDirectory)/src/xunit.runner.utility/xunit.runner.utility.csproj /p:NuspecFile=$(ProjectDirectory)/src/xunit.runner.utility.nuspec $(BuildCommandArgs)"
+            EnvironmentVariables="@(PackEnvironmentVariables)"
+            WorkingDirectory="$(ProjectDirectory)"
+            IgnoreStandardErrorWarningFormat="true" />
+
+            <Exec Command="$(DotnetToolCommand) pack --no-build --no-restore /bl:pack.binlog $(ProjectDirectory)/src/xunit.core/xunit.core.csproj /p:NuspecFile=$(ProjectDirectory)/src/xunit.core.nuspec $(BuildCommandArgs)"
+            EnvironmentVariables="@(PackEnvironmentVariables)"
+            WorkingDirectory="$(ProjectDirectory)"
+            IgnoreStandardErrorWarningFormat="true" />
     </Target>
   
   </Project>
