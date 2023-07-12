@@ -10,9 +10,10 @@
     <Target Name="RepoBuild">
       <PropertyGroup>
         <BuildAndRestoreProject>$(ProjectDirectory)/xunit-notests.slnf</BuildAndRestoreProject>
+        <XunitVersion>2.4.10</XunitVersion>
         <BuildCommandArgs>/p:Configuration=$(Configuration)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:MicrosoftSourceLinkGitHubVersion=$(MicrosoftSourceLinkGitHubVersion)</BuildCommandArgs>
-        <BuildCommandArgs>$(BuildCommandArgs) /p:PackageVersion=2.4.2</BuildCommandArgs>
+        <BuildCommandArgs>$(BuildCommandArgs) /p:PackageVersion=$(XunitVersion)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:DelaySign=$(DelaySign)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:PublicSign=$(PublicSign)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /v:$(LogVerbosity)</BuildCommandArgs>
@@ -20,9 +21,14 @@
         <BuildCommandArgs>$(BuildCommandArgs) $(RedirectRepoOutputToLog)</BuildCommandArgs>
       </PropertyGroup>
 
+      <!-- We use an explicit nuspec when packing to minimize the number of changes required
+           in patches. This means we need to pass the nuspec properties explicitly.
+           The nuspec properties are of the form X=Y;Z=W, which doesn't play well with command lines,
+           so pass in environment variables. Be sure to escape the ';' so that msbuild doesn't interpret it as
+           two separate items in the item group -->
       <ItemGroup>
         <PackEnvironmentVariables Include="@(EnvironmentVariables)" />
-        <PackEnvironmentVariables Include="NuspecProperties=PackageVersion=2.4.2%3BConfiguration=$(Configuration)"/>
+        <PackEnvironmentVariables Include="NuspecProperties=PackageVersion=$(XunitVersion)%3BConfiguration=$(Configuration)"/>
       </ItemGroup>
   
       <Exec Command="$(DotnetToolCommand) restore /bl:restore.binlog $(BuildAndRestoreProject) $(BuildCommandArgs)  "

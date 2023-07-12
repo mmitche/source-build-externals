@@ -1,11 +1,11 @@
-From 873305510b5b08a4c46a62e56cf272fe73a47fd6 Mon Sep 17 00:00:00 2001
+From c2c4cd9f05cddd7fd03e80f87c894d7a10a5152e Mon Sep 17 00:00:00 2001
 From: Matt Mitchell <mmitche@microsoft.com>
-Date: Tue, 11 Jul 2023 16:47:01 -0700
+Date: Wed, 12 Jul 2023 09:33:44 -0700
 Subject: [PATCH] Patching
 
 ---
  global.json                                   |  5 ---
- src/Directory.Build.props                     | 10 ++---
+ src/Directory.Build.props                     |  9 ++--
  src/Directory.Build.targets                   | 21 ---------
  src/xunit.assert/xunit.assert.csproj          | 13 +-----
  src/xunit.core/xunit.core.csproj              |  2 +-
@@ -16,7 +16,7 @@ Subject: [PATCH] Patching
  src/xunit.runner.utility.nuspec               | 43 ++-----------------
  .../xunit.runner.utility.csproj               | 12 ++----
  xunit-notests.slnf                            | 10 +++++
- 12 files changed, 35 insertions(+), 118 deletions(-)
+ 12 files changed, 34 insertions(+), 118 deletions(-)
  delete mode 100644 global.json
  create mode 100644 xunit-notests.slnf
 
@@ -32,21 +32,20 @@ index ebd1966e..00000000
 -  }
 -}
 diff --git a/src/Directory.Build.props b/src/Directory.Build.props
-index 95cabfab..31251372 100644
+index 95cabfab..0970f6e4 100644
 --- a/src/Directory.Build.props
 +++ b/src/Directory.Build.props
-@@ -22,6 +22,10 @@
+@@ -22,6 +22,9 @@
      <TargetPlatformMinVersion Condition=" '$(TargetFramework)' == 'uap10.0' ">10.0.16299.0</TargetPlatformMinVersion>
      <TargetPlatformVersion Condition=" '$(TargetFramework)' == 'uap10.0' ">10.0.19041.0</TargetPlatformVersion>
      <WarningsAsErrors>true</WarningsAsErrors>
-+    <PackageVersion>2.4.2</PackageVersion>
 +    <AssemblyVersion>$(PackageVersion)</AssemblyVersion>
 +    <AssemblyFileVersion>$(PackageVersion)</AssemblyFileVersion>
 +    <Version>$(PackageVersion)</Version>
    </PropertyGroup>
  
    <ItemGroup>
-@@ -29,11 +33,7 @@
+@@ -29,11 +32,7 @@
    </ItemGroup>
  
    <ItemGroup>
