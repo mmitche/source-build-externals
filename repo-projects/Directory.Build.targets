@@ -19,9 +19,9 @@
     <ItemGroup>
       <DependencyPackagesToCopy Include="$(SourceBuiltPackagesPath)*.nupkg" />
     </ItemGroup>
-    <Copy Condition="'$(LocalNuGetPackageCacheDirectory)' != ''"
+    <Copy Condition="'$(CurrentRepoSourceBuiltNupkgCacheDir)' != ''"
           SourceFiles="@(_BuiltPackages)"
-          DestinationFolder="$(LocalNuGetPackageCacheDirectory)" />
+          DestinationFolder="$(CurrentRepoSourceBuiltNupkgCacheDir)" />
   </Target>
 
   <ItemGroup  Condition="Exists('$(PatchesDir)$(RepositoryName)')" >
