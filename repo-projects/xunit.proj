@@ -10,7 +10,7 @@
     <Target Name="RepoBuild">
       <PropertyGroup>
         <BuildAndRestoreProject>$(ProjectDirectory)/xunit-notests.slnf</BuildAndRestoreProject>
-        <XunitVersion>2.4.10</XunitVersion>
+        <XunitVersion>2.4.2</XunitVersion>
         <BuildCommandArgs>/p:Configuration=$(Configuration)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:MicrosoftSourceLinkGitHubVersion=$(MicrosoftSourceLinkGitHubVersion)</BuildCommandArgs>
         <BuildCommandArgs>$(BuildCommandArgs) /p:PackageVersion=$(XunitVersion)</BuildCommandArgs>
@@ -42,7 +42,7 @@
             IgnoreStandardErrorWarningFormat="true" />
   
       <!-- xunit has a non-standard set of packaging. Instead of calling pack on the solution call it on each individual build project,
-           with no-build and and no-restore, with the explicit nuspecs associated with the project. -->
+           with no-build and and no-restore, with the explicit nuspecs associated with the various projects. -->
       <Exec Command="$(DotnetToolCommand) pack --no-build --no-restore /bl:pack.binlog $(ProjectDirectory)/src/xunit.core/xunit.core.csproj /p:NuspecFile=$(ProjectDirectory)/src/xunit.extensibility.core.nuspec $(BuildCommandArgs)"
             EnvironmentVariables="@(PackEnvironmentVariables)"
             WorkingDirectory="$(ProjectDirectory)"
