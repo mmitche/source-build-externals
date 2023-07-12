@@ -22,7 +22,7 @@
              Targets="Restore;Build;Pack" />
 
     <Copy Condition="'$(LocalNuGetPackageCacheDirectory)' != ''"
-          SourceFiles="@(DependencyPackageProjects->'$(ArtifactsShippingPackagesDir)%(FileName).nupkg')"
+          SourceFiles="@(_BuiltPackages)"
           DestinationFolder="$(LocalNuGetPackageCacheDirectory)" />
   </Target>
 </Project>
