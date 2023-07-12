@@ -4,6 +4,10 @@
     <PropertyGroup>
       <PackagesOutput>$(ProjectDirectory)/bin/$(Configuration)</PackagesOutput>
     </PropertyGroup>
+
+    <ItemGroup>
+      <RepositoryReference Include="abstractions-xunit" />
+    </ItemGroup>
   
     <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   

@@ -14,6 +14,14 @@
     </ItemGroup>
 
     <MSBuild Projects="@(_DependentProject)" Targets="Build" BuildInParallel="$(BuildInParallel)" StopOnFirstFailure="true" />
+
+    <!-- Copy outputs of the dependent projects into the local nuget cache. -->
+    <ItemGroup>
+      <DependencyPackagesToCopy Include="$(SourceBuiltPackagesPath)*.nupkg" />
+    </ItemGroup>
+    <Copy Condition="'$(LocalNuGetPackageCacheDirectory)' != ''"
+          SourceFiles="@(_BuiltPackages)"
+          DestinationFolder="$(LocalNuGetPackageCacheDirectory)" />
   </Target>
 
   <ItemGroup  Condition="Exists('$(PatchesDir)$(RepositoryName)')" >

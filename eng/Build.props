@@ -13,7 +13,7 @@
     <ProjectToBuild Include="$(RepoRoot)\eng\NoOp.csproj" />
   </ItemGroup>
 
-  <Target Name="BuildDependencyPackageProjects"
+  <!-- <Target Name="BuildDependencyPackageProjects"
           AfterTargets="Execute"
           Condition="'$(BuildDependencyPackageProjects)' == 'true'"
           Outputs="%(DependencyPackageProjects.Identity)">
@@ -27,5 +27,5 @@
     <Copy Condition="'$(LocalNuGetPackageCacheDirectory)' != ''"
           SourceFiles="@(DependencyPackagesToCopy)"
           DestinationFolder="$(LocalNuGetPackageCacheDirectory)" />
-  </Target>
+  </Target> -->
 </Project>
