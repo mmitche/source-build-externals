@@ -21,8 +21,11 @@
              Projects="@(DependencyPackageProjects)"
              Targets="Restore;Build;Pack" />
 
+    <ItemGroup>
+      <DependencyPackagesToCopy Include="$(ArtifactsPackagesDir)*.nupkg" />
+    </ItemGroup>
     <Copy Condition="'$(LocalNuGetPackageCacheDirectory)' != ''"
-          SourceFiles="$(ArtifactsPackagesDir)*.nupkg"
+          SourceFiles="@(DependencyPackagesToCopy)"
           DestinationFolder="$(LocalNuGetPackageCacheDirectory)" />
   </Target>
 </Project>
