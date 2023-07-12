@@ -22,7 +22,7 @@
              Targets="Restore;Build;Pack" />
 
     <Copy Condition="'$(LocalNuGetPackageCacheDirectory)' != ''"
-          SourceFiles="@(_BuiltPackages)"
+          SourceFiles="$(SourceBuiltPackagesPath)/*.nupkg"
           DestinationFolder="$(LocalNuGetPackageCacheDirectory)" />
   </Target>
 </Project>
